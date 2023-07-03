@@ -34,8 +34,8 @@ pipeline {
           }
           steps {
             sh 'mvn checkstyle:checkstyle'
-            sh '''$class: \'CheckStylePublisher\',
-pattern: \'**/target/checkstyle-result.xml\''''
+            sh '''$class: CheckStylePublisher
+'''
           }
         }
 
