@@ -1,8 +1,5 @@
 pipeline {
   agent any
-   options {
-  skipDefaultCheckout()
- }
   stages {
     stage('SCM') {
       steps {
@@ -37,20 +34,22 @@ pipeline {
           }
           steps {
             sh 'mvn checkstyle:checkstyle'
-
-          step([$class: 'CheckStylePublisher',
-       //canRunOnFailed: true,
-       defaultEncoding: '',
-       healthy: '100',
-       pattern: '**/target/checkstyle-result.xml',
-       unHealthy: '90',
-       //useStableBuildAsReference: true
-      ])
+            step([$class: 'CheckStylePublisher',
+                   //canRunOnFailed: true,
+                   defaultEncoding: '',
+                   healthy: '100',
+                   pattern: '**/target/checkstyle-result.xml',
+                   unHealthy: '90',
+                   //useStableBuildAsReference: true
+                  ])
           }
         }
 
       }
     }
 
+  }
+  options {
+    skipDefaultCheckout()
   }
 }
