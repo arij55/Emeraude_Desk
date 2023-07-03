@@ -10,15 +10,14 @@ pipeline {
     stage('Compile') {
       agent {
         docker {
-          image 'maven:3.6.0-jdk-8-alpine'
           reuseNode true
           args '-v/root/.m2/repository:/root/.m2/repository'
+          image 'simaofsilva/maven-openjdk11-alpine'
         }
 
       }
       steps {
-        sh '''docker pull maven:3.6.0-jdk-8-alpine 
-mvn clean compile'''
+        sh 'mvn clean compile'
       }
     }
 
