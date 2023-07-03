@@ -17,7 +17,8 @@ pipeline {
 
       }
       steps {
-        sh ' mvn clean compile'
+        sh '''docker pull maven:3.6.0-jdk-8-alpine 
+mvn clean compile'''
       }
     }
 
