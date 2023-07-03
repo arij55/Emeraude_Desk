@@ -1,8 +1,5 @@
 pipeline {
   agent any
-    options {
-    skipDefaultCheckout()
-  }
   stages {
     stage('SCM') {
       steps {
@@ -37,7 +34,6 @@ pipeline {
           }
           steps {
             sh 'mvn checkstyle:checkstyle'
-        
           }
         }
 
@@ -45,5 +41,7 @@ pipeline {
     }
 
   }
-
+  options {
+    skipDefaultCheckout()
+  }
 }
