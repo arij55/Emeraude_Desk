@@ -6,8 +6,6 @@ pipeline {
         checkout scm
       }
     }
-stage('Build') {
-   parallel {
     stage('Compile') {
      agent {
       docker {
@@ -23,5 +21,5 @@ stage('Build') {
     }
   }
 }
-  }
-}
+  
+
