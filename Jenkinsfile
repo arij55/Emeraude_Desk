@@ -1,5 +1,8 @@
 pipeline {
   agent any
+    options {
+    skipDefaultCheckout()
+  }
   stages {
     stage('SCM') {
       steps {
@@ -42,7 +45,5 @@ pipeline {
     }
 
   }
-  options {
-    skipDefaultCheckout()
-  }
+
 }
