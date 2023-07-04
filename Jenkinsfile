@@ -2,11 +2,9 @@ pipeline {
   agent any
   stages {
     stage('SCM') {
+      agent any
       steps {
         checkout scm
-        sh '''echo PATH = ${PATH}
-echo M2_HOME = ${M2_HOME}
-mvn clean'''
       }
     }
 
@@ -22,7 +20,9 @@ mvn clean'''
 
           }
           steps {
-            sh 'mvn clean compile'
+            sh '''echo PATH = ${PATH}
+echo M2_HOME = ${M2_HOME}
+mvn clean compile'''
           }
         }
 
