@@ -24,7 +24,6 @@ echo M2_HOME = ${M2_HOME}
 mvn clean compile'''
           }
         }
-
         stage('CheckStyle') {
           agent {
             docker {
