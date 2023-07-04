@@ -41,26 +41,32 @@ pipeline {
 
       }
     }
-     stage('Unit Tests') {
-   when {
-    anyOf { branch 'master' }
-   }
-   agent {
-    docker {
-     image 'huangzp88/maven-openjdk17'
-     args '-v /root/.m2/repository:/root/.m2/repository'
-     reuseNode true
+
+    stage('Unit Tests') {
+      agent {
+        docker {
+          image 'huangzp88/maven-openjdk17'
+          reuseNode true
+          args '-v/root/.m2/repository:/root/.m2/repository'
+        }
+
+      }
+      when {
+        anyOf {
+          branch 'master'
+        }
+
+      }
+      post {
+        always {
+          junit 'target/surefire-reports/**/*.xml'
+        }
+
+      }
+      steps {
+        sh 'mvn test'
+      }
     }
-   }
-   steps {
-    sh 'mvn test'
-   }
-   post {
-    always {
-     junit 'target/surefire-reports/**/*.xml'
-    }
-   }
-  }
 
   }
   options {
